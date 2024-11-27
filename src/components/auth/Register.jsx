@@ -20,8 +20,14 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && formData.username && formData.password && formData.confirmPassword) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = async () => {
     setError('');
 
     if (!formData.username || !formData.password) {
@@ -58,62 +64,56 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className="register-container" onKeyDown={handleKeyDown}>
       <div className="register-form-container">
         <h2 className="register-title">Create Account</h2>
         
         {error && <p className="error-message">{error}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username" className="form-label">
-              Username
-            </label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              required
-              className="form-input"
-              value={formData.username}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="input-container">
+          <input
+            id="username"
+            name="username"
+            type="text"
+            required
+            placeholder="Username"
+            className="form-input"
+            value={formData.username}
+            onChange={handleChange}
+          />
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="form-input"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="input-container">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            placeholder="Password"
+            className="form-input"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="confirmPassword" className="form-label">
-              Confirm Password
-            </label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              required
-              className="form-input"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="input-container">
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm Password"
+            required
+            className="form-input"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+        </div>  
 
-          <button type="submit" className="submit-button">
+        <div className="button-container">
+          <button onClick={handleSubmit} className="register-button">
             Register
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

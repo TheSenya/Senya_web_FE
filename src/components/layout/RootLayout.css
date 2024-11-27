@@ -11,7 +11,8 @@
 
 .header nav {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header a {
@@ -35,3 +36,14 @@
   text-align: center;
   margin-top: auto;
 } 
+
+.register-link-container {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

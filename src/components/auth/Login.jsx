@@ -45,12 +45,10 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="login-box">
         <form onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
-          <div className="input-row">
-            <div className="email-input-container">
-              <label htmlFor="username">Username</label>
+          <div className="input-group">
+            <div className="input-field">
               <input
                 type="text"
                 id="username"
@@ -58,10 +56,10 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required
+                placeholder="Username"
               />
             </div>
-            <div className="password-input-container">
-              <label htmlFor="password">Password</label>
+            <div className="input-field">
               <input
                 type="password"
                 id="password"
@@ -69,6 +67,7 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
+                placeholder="Password"
               />
             </div>
           </div>
@@ -77,7 +76,6 @@ const Login = () => {
           </button>
         </form>
       </div>
-    </div>
   );
 };
 

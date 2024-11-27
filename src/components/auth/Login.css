@@ -1,8 +1,6 @@
 .login-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2rem;
   }
   
   .login-form {
@@ -33,14 +31,6 @@
     background-color: #535bf2;
   }
 
-  .email-input-container, .password-input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.5rem;
-    flex: 1;
-  }
-
   .input-row {
     display: flex;
     flex-direction: row;
@@ -53,7 +43,25 @@
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 0.5rem;
     text-align: center;
+    display: inline-flex;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+
+  .input-group {
+    display: inline-flex;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+
+  .input-field input {
+    padding: 0.5rem;
+  }
+
+  .login-button {
+    align-self: flex-end;
+    padding: 0.5rem;
+    margin-left: 1rem;
   }

@@ -1,15 +1,22 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import './RootLayout.css';
+import Login from '../auth/Login';
 
 const RootLayout = () => {
   return (
     <div className="root-container">
       <header className="header">
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
+          <div className="home-link-container">
+            <Link to="/">Home</Link>
+          </div>
+          <div className="nav-right">
+            <Login />
+            <div className="register-link-container">
+              <Link to="/register">Register</Link>
+            </div>
+          </div>
         </nav>
       </header>
 
