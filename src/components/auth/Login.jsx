@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { API_ENDPOINTS } from '../constants';
+import { API_ENDPOINTS } from '../../constants';
+
 const Login = () => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +19,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       const response = await fetch(API_ENDPOINTS.LOGIN, {
         method: 'POST',
@@ -31,11 +34,12 @@ const Login = () => {
         // Handle successful login (e.g., store token, redirect)
         console.log('Login successful:', data);
       } else {
-        // Handle login error
-        console.error('Login failed');
+        // Get error message from response if available
+        const errorData = await response.json().catch(() => ({}));
+        setError(errorData.message || 'Login failed. Please check your credentials.');
       }
     } catch (error) {
-      console.error('Error during login:', error);
+      setError('An error occurred. Please try again later.');
     }
   };
 
@@ -43,6 +47,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-box">
         <form onSubmit={handleSubmit}>
+          {error && <div className="error-message">{error}</div>}
           <div className="input-row">
             <div className="email-input-container">
               <label htmlFor="username">Username</label>
