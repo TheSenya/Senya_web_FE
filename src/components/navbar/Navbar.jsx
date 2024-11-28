@@ -19,12 +19,12 @@ const Navbar = () => {
       </div>
       <div className="nav-right">
         <Login />
-        {!isAuthenticated && (
-          <div className="register-link-container">
-            <Link to="/register">Register</Link>
-          </div>
-        )}
-        <Logout />
+        {isAuthenticated 
+          ? <Logout /> 
+          : (<div className="register-link-container">
+              <Link to="/register">Register</Link>
+            </div>)
+        }
       </div>
     </nav>
   );
