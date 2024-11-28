@@ -29,21 +29,3 @@
   flex: 1;
   padding: 2rem;
 }
-
-.footer {
-  padding: 1rem;
-  background-color: #f8f9fa;
-  text-align: center;
-  margin-top: auto;
-} 
-
-.register-link-container {
-  display: inline-flex;
-  justify-content: flex-end;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}

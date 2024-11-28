@@ -1,0 +1,16 @@
+.register-link-container {
+    display: inline-flex;
+    justify-content: flex-end;
+  }
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .nav-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+  }
