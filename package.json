@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync": "aws s3 sync ./dist 's3://senya-web-app-bucket/'",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id EY781SWFR0XI6 --paths '/*'"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
