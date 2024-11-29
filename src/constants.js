@@ -5,3 +5,11 @@ export const API_ENDPOINTS = {
     REGISTER: `${API_BASE_URL}/auth/register`,
     // Add more endpoints as needed
 };
+
+export const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+
+export const EXERCISE_LIST = [
+    'Push-ups', 'Pull-ups', 'Squats', 'Deadlifts', 'Bench Press',
+    'Shoulder Press', 'Lunges', 'Planks', 'Bicep Curls'
+];

@@ -1,0 +1,91 @@
+.day-block-expanded-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.day-block-expanded {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+
+    .day-block-expanded-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    
+}
+
+.close-button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+.add-workout-button {
+    font-size: 14px;
+    cursor: pointer;
+    padding: 3px 7px;
+    border-radius: 5px;
+    border: lightgray solid 1px;
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Add your existing day block expanded content styles here */
+.day-block-expanded-header,
+.day-block-expanded-body,
+.day-block-expanded-footer {
+    margin-bottom: 10px;
+}
+
+.add-workout-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.day-block-expanded-header-right {
+    display: flex;
+    justify-content: center;
+}
