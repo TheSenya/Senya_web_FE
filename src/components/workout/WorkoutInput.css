@@ -1,4 +1,48 @@
+.workout-creator-container{
+    padding: 5px;
+    border: 1px solid #000;
+}
+
 .workout-input-container {
-    display: inline-flex;
+    display: flex;
     gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+
+    flex: 1;
+    height: 50px
+}
+
+.workout-name-container{
+    
+}
+
+.button-container{
+    display: flex;
+    align-content: center;   
+}
+
+.workout-preview{
+    border: 1px solid #000;
+    padding: 5px;
+}
+
+.set-input input{
+    width: 60px;
+}
+
+.unit-button {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 5px;
+}
+
+.unit-button.active {
+    background: cornflowerblue;
+    color: white;
+    border-color: cornflowerblue;
 }
