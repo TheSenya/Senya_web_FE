@@ -38,6 +38,7 @@ const CryptoTicker = () => {
         };
         fetchCoins();
     }, []);
+
     
 
     // Debounced search function
