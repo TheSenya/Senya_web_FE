@@ -13,6 +13,7 @@ const WeatherWidget = () => {
             latitude: 40.7128,
             longitude: -74.0060
         };
+        
     });
     const [newLocation, setNewLocation] = useState('');
 
