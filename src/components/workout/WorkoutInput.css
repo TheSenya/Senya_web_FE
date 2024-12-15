@@ -14,7 +14,7 @@
 }
 
 .workout-name-container{
-    
+    display: flex;
 }
 
 .button-container{
