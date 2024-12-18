@@ -18,16 +18,18 @@ const SimpleWeather = () => {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto`
+                    `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,wind_speed_10m,relative_humidity_2m&daily=temperature_2m_max,temperature_2m_min&timezone=auto`
                 );
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch weather data');
                 }
 
+
                 const data = await response.json();
                 setWeather(data);
                 setError(null);
+                console.log(data)
             } catch (err) {
                 setError('Error fetching weather data');
                 console.error('Weather fetch error:', err);
@@ -63,31 +65,32 @@ const SimpleWeather = () => {
 
     const handleLocationSearch = async () => {
         // check if the search is empty and if it is, set showSearch to true
-        if (!showSearch && !searchText.trim()){
+        if (!showSearch && !searchText.trim()) {
             setShowSearch(true);
         } // if the searchtext is empty and search button is clicked, set showSearch to false
-        else if (showSearch && !searchText.trim()){
+        else if (showSearch && !searchText.trim()) {
             setShowSearch(false);
         }
         // if the search is not empty, set showSearch to true and set the location to the searchText
-        else if (!showSearch && searchText.trim()){
+        else if (!showSearch && searchText.trim()) {
             setShowSearch(true);
             setLocation(searchText);
         }
-            
+
     };
 
-    return (    
+
+    return (
         <div className="weather-widget-container">
             <div className="weather-widget-header">
                 {showSearch ? (
                     <div className='search-container'>
                         <input type="text" placeholder="Search location..." onChange={(e) => setLocation(e.target.value)} />
                     </div>
-                ) : (                
+                ) : (
                     <div className='location-name'>
                         {location.name}
-                    </div>                
+                    </div>
                 )}
                 <div className='search-container'>
                     <button className='search-button-icon' onClick={handleLocationSearch}>🔍</button>
@@ -101,13 +104,41 @@ const SimpleWeather = () => {
                     <div className="current-date">
 
                         {/* add date based on current time in that location */}
-                        {new Date().toLocaleDateString('en-US', {  })}
+                        {new Date().toLocaleDateString('en-US', {
+                            weekday: 'short',
+                            month: 'short',
+                            day: 'numeric'
+                        })}
                     </div>
                     <div className="current-details">
                         <div>💨 {weather.current.wind_speed_10m} {weather.current_units.wind_speed_10m}</div>
                         <div>💧 {weather.current.relative_humidity_2m}%</div>
                     </div>
                 </div>
+
+                <div className="forecast">
+                    {weather.daily.time.slice(0, 5).map((date, index) => (
+                        <div key={date} className="forecast-day">
+                            <span>
+                                {new Date(date).toLocaleDateString('en-US', { weekday: 'short' })}
+                            </span>
+                            <div className='arrow-temp-container'>
+                                <div className='arrow-temp'>
+                                    <span className="arrow-low">↓</span>
+                                    <span className='temp'>{Math.round(weather.daily.temperature_2m_min[index])}°</span>
+
+                                </div>
+                                <div className='arrow-temp'>
+                                    <span className="arrow-high">↑</span>
+                                    <span className='temp'>{Math.round(weather.daily.temperature_2m_max[index])}°</span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    ))}
+                </div>
+
             </div>
         </div>
     );

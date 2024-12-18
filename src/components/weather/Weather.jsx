@@ -29,6 +29,7 @@ const WeatherWidget = () => {
                 const data = await response.json();
                 setWeather(data);
                 setError(null);
+                //console.log('data1', data)
             } catch (err) {
                 setError('Failed to fetch weather data');
             } finally {

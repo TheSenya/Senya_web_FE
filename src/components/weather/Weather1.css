@@ -50,3 +50,28 @@
 .search-button-icon:hover {
     opacity: 1;
 }
+
+.arrow-temp-container {
+    display: flex;
+}
+
+.arrow-temp {
+    padding: 0 5px;
+    font-weight: bold;
+
+        display: flex;
+        align-items: center;
+        gap: 4px;
+}
+
+.arrow-low {
+    color: #48CAE4;
+    font-size: 1.2rem;
+    padding: 0 1px;
+}
+
+.arrow-high {
+    color: #E63946;
+    font-size: 1.2rem;
+    padding: 0 1px;
+}
