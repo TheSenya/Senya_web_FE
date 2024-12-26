@@ -13,8 +13,9 @@ const SimpleWeather = () => {
     const [showSearch, setShowSearch] = useState(false);
     const [searchText, setSearchText] = useState('');
 
-
     
+
+
     useEffect(() => {
         const fetchWeather = async () => {
             try {
