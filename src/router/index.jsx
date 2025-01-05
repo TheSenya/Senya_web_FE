@@ -4,6 +4,7 @@ import Register from '../components/auth/Register';
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
 import Gym from '../pages/gym/Gym';
+import TaskManager from '../pages/task_manager/taskManager';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/gym',
         element: <Gym />,
+      },
+      {
+        path: '/taskmanager',
+        element: <TaskManager />,
       },
     ],
   },
