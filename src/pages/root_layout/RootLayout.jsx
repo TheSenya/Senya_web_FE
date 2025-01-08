@@ -3,6 +3,7 @@ import { Outlet, Link } from 'react-router-dom';
 import './RootLayout.css';
 import Navbar from '../../components/navbar/Navbar';
 import FooterBar from '../../components/footer/FooterBar';
+import TickerTape from '../../components/crypto/TickerTape';
 
 const RootLayout = () => {
   return (
@@ -15,6 +16,7 @@ const RootLayout = () => {
         <Outlet />
       </main>
       <FooterBar />
+      <TickerTape />
     </div>
   );
 };

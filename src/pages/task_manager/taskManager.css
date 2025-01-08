@@ -1,61 +1,97 @@
 .task-manager {
-    max-width: 600px;
-    margin: 2rem auto;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.task-form {
+.task-input-section {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.task-input {
-    flex: 1;
+.task-input-section input {
     padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    margin-right: 10px;
+    width: 300px;
 }
 
-.add-button {
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
-.add-button:hover {
-    background-color: #45a049;
+.task-container,
+.leftover-task-container,
+.daily-task-container {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 15px;
 }
 
-.task-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-.task-item {
+li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 4px;
+    padding: 8px 0;
+    width: 100%;
 }
 
-.delete-button {
-    margin-left: auto;
-    padding: 5px 10px;
-    background-color: #ff4444;
+li input[type="checkbox"] {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.delete-button:hover {
-    background-color: #cc0000;
+button:hover {
+    background-color: #0056b3;
+}
+
+.count-input {
+    width: 100px !important;
+    margin-right: 10px;
+}
+
+.unit-input {
+    width: 150px !important;
+    margin-right: 10px;
+}
+
+.counter-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-left: 8px;
+}
+
+.counter-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.counter-btn {
+    padding: 4px 8px;
+    font-size: 14px;
+    min-width: 30px;
 }
