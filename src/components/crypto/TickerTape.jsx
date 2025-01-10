@@ -10,49 +10,42 @@ const TickerTape = () => {
   ]);
 
   useEffect(() => {
-    const calculateSpacingAndDuration = () => {
-      const tickerContent = document.querySelector('.ticker-tape-content');
-      const tickerContainer = document.querySelector('.ticker-tape');
-      if (tickerContent && tickerContainer) {
-        // Calculate spacing based on container width and number of items
-        const containerWidth = tickerContainer.offsetWidth;
-        const itemCount = prices.length;
-        const spacing = Math.max(40, containerWidth / (itemCount * 2)); // Minimum 40px spacing
-        
-        // Apply spacing to items
-        const items = document.querySelectorAll('.ticker-item');
-        items.forEach(item => {
-          item.style.marginRight = `${spacing}px`;
-        });
+    // Calculate spacing only once when component mounts
+    const tickerContent = document.querySelector('.ticker-tape-content');
+    const tickerContainer = document.querySelector('.ticker-tape');
+    
+    if (tickerContent && tickerContainer) {
+      const containerWidth = tickerContainer.offsetWidth;
+      const itemCount = prices.length;
+      const spacing = Math.max(40, containerWidth / (itemCount * 2)); // Minimum 40px spacing
+      
+      // Apply constant spacing to items
+      const items = document.querySelectorAll('.ticker-item');
+      items.forEach(item => {
+        item.style.marginRight = `${spacing}px`;
+      });
 
-        // Calculate duration based on content width
-        const contentWidth = tickerContent.offsetWidth;
-        const duration = contentWidth / 50; // Adjust speed here
-        tickerContent.style.animationDuration = `${duration}s`;
-      }
-    };
+      // Set constant animation duration
+      const contentWidth = tickerContent.offsetWidth;
+      const duration = contentWidth / 50;
+      tickerContent.style.animationDuration = `${duration}s`;
+    }
 
-    // Calculate initial spacing and duration
-    calculateSpacingAndDuration();
-
-    // Recalculate on window resize
-    window.addEventListener('resize', calculateSpacingAndDuration);
-
+    // Price update logic
     const updatePrices = () => {
-      setPrices(prices.map(coin => ({
+      setPrices(prevPrices => prevPrices.map(coin => ({
         ...coin,
         price: `$${(Math.random() * 50000).toFixed(2)}`,
         change: `${(Math.random() * 10 - 5).toFixed(2)}%`
       })));
     };
 
-    //const interval = setInterval(updatePrices, 3000);
+    const interval = setInterval(updatePrices, 3000);
 
     return () => {
       clearInterval(interval);
-      window.removeEventListener('resize', calculateSpacingAndDuration);
     };
-  }, [prices.length]);
+  }, []); // Empty dependency array for one-time calculation
 
   return (
     <div className="ticker-tape">
