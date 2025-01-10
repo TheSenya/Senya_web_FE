@@ -53,7 +53,7 @@ const Register = () => {
       });
 
       if (response.ok) {
-        navigate('/login');
+        navigate('/home');
       } else {
         const data = await response.json();
         setError(data.message || 'Registration failed');
