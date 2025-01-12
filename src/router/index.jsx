@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <TaskManager />,
       },
     ],
-  },
+  },  
 ]);
 
 export default router;
