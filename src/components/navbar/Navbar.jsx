@@ -22,6 +22,9 @@ const Navbar = () => {
         <div className="home-link-container">
           <Link to="/taskmanager">Task Manager</Link>
         </div>
+        <div className="home-link-container">
+          <Link to="/notes">Notes</Link>
+        </div>
       </div>
       <div className="nav-right">
         <Login />

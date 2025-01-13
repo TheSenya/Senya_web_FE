@@ -5,6 +5,7 @@ import Home from '../pages/home/Home';
 import About from '../pages/about/About';
 import Gym from '../pages/gym/Gym';
 import TaskManager from '../pages/task_manager/taskManager';
+import Notes from '../pages/notes/Notes';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/taskmanager',
         element: <TaskManager />,
+      },
+      {
+        path: '/notes',
+        element: <Notes />,
       },
     ],
   },  
