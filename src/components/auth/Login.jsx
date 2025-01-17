@@ -7,7 +7,7 @@ import { loginStart, loginSuccess, loginFailure } from '../../redux/slices/authS
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { loading, error: storeError, user, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading, error: storeError, user, accessToken, isAuthenticated } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -15,6 +15,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
+  // error timer for visual notification
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => {
@@ -25,6 +26,7 @@ const Login = () => {
     }
   }, [error]);
 
+  // success timer for visual notification
   useEffect(() => {
     if (successMsg) {
       const timer = setTimeout(() => {
@@ -35,7 +37,7 @@ const Login = () => {
     }
   }, [successMsg]);
 
-  const handleChange = (e) => {
+  const handleLoginFieldChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
@@ -43,13 +45,13 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccessMsg('');
-    
+
     dispatch(loginStart());
-    
+
     try {
       const response = await fetch(API_ENDPOINTS.LOGIN, {
         method: 'POST',
@@ -57,6 +59,7 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        credentials: 'include', // Important: needed for cookies
       });
 
       if (response.ok) {
@@ -64,7 +67,7 @@ const Login = () => {
         console.log("data", data);
         dispatch(loginSuccess({
           user: data.username,
-          token: data.access_token
+          accessToken: data.access_token
         }));
         setSuccessMsg('Login successful! Redirecting...');
         // Handle successful login (e.g., redirect)
@@ -81,17 +84,37 @@ const Login = () => {
     }
   };
 
+  const handleUsernameClick = async () => {
+    try {
+      const response = await fetch(API_ENDPOINTS.ME, {
+        credentials: 'include',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      const data = await response.json();
+      console.log('User details:', data);
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+    }
+  };
+
   return (
     <div className="login-container">
       {error && <Popup message={error} type="error" />}
       {successMsg && <Popup message={successMsg} type="success" />}
-      
       {user ? (
         <div className="logged-in-message">
-          You are already logged in as <strong>{user}</strong>
+          You are already logged in as{' '}
+          <strong
+            onClick={handleUsernameClick}
+            style={{ cursor: 'pointer', textDecoration: 'underline' }}
+          >
+            {user}
+          </strong>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLoginSubmit}>
           <div className="input-group">
             <div className="input-field">
               <input
@@ -99,7 +122,7 @@ const Login = () => {
                 id="username"
                 name="username"
                 value={formData.username}
-                onChange={handleChange}
+                onChange={handleLoginFieldChange}
                 required
                 placeholder="Username"
               />
@@ -110,14 +133,14 @@ const Login = () => {
                 id="password"
                 name="password"
                 value={formData.password}
-                onChange={handleChange}
+                onChange={handleLoginFieldChange}
                 required
                 placeholder="Password"
               />
             </div>
           </div>
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="login-button"
             disabled={loading}
           >
