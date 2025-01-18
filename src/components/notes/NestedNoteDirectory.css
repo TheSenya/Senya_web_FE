@@ -1,0 +1,71 @@
+/* NestedNoteDirectory.css */
+.tree-node {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.tree-node .icon {
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+}
+
+.tree-node.folder {
+    padding-left: 20px;
+}
+
+.tree-node.folder.expanded {
+    padding-left: 40px;
+}
+
+.tree-node.folder .chevron {
+    margin-right: 4px;
+}
+
+.tree-node .folder-icon {
+    color: #fbbf24;
+}
+
+.tree-node .file-icon {
+    color: #60a5fa;
+}
+
+.tree-node-name {
+    font-size: 14px;
+}
+
+.directory-container {
+    font-family: system-ui, -apple-system, sans-serif;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    max-width: 400px;
+}
+
+.tree-node.selected {
+    background-color: #e5e7eb;
+    border-radius: 4px;
+}
+
+.tree-node {
+    padding: 4px 8px;
+    /* Added horizontal padding for better highlight appearance */
+    /* ... existing tree-node styles ... */
+}
+
+.node-container-left{
+    display: flex;
+    flex: 1;
+}
+
+.node-container-right{
+    display: flex;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.node-container-right .delete-option {
+    color: red;
+    cursor: pointer;
+  }

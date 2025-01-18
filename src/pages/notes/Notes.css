@@ -1,0 +1,31 @@
+.notes-container {
+    display: flex;
+    height: 75vh;
+}
+
+.note-dir-container {
+    width: 25%;
+    min-width: 50px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.text-editor-container {
+    width: 75%;
+    min-width: 200px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.draggable-line {
+    cursor: col-resize;
+    width: 5px;
+    background-color: lightgray;
+    transition: background-color 0.3s;
+}
+
+.draggable-line:hover {
+    background-color: darkgray;
+}
