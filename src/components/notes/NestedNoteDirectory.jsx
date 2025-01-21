@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronDown, Folder, File } from 'lucide-react';
+import { ChevronRight, ChevronDown, Folder, File, Pencil, X, Plus } from 'lucide-react';
 import './NestedNoteDirectory.css';
+import PopupModal from '../REUSE/popup_modal/PopupModal';
 
 const TreeNode = ({ node, level = 0, selectedFile, onSelectFile }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [newFolderName, setNewFolderName] = useState('')
     const isFolder = node.type === 'folder';
 
     const handleToggle = (e) => {
@@ -16,18 +19,46 @@ const TreeNode = ({ node, level = 0, selectedFile, onSelectFile }) => {
         e.stopPropagation();
     };
 
-    const handleDelete = () => {
+    const handleDeleteFolder = () => {
         console.log('delete node: ', node)
     }
 
-    const handleAdd = () => {
+    const handleAddFolder = () => {
+        console.log('add node: ', node)
+        setShowModal(true);
+    }
 
+    const handleEditFolder = () => {
+        console.log('add node: ', node)
+        setShowModal(true);
+    }
+
+    const handleFolderNameChange = (e) => {
+        setNewFolderName(e.target.value)
+    }
+
+    const handleCreateNewFolder = () => {
+        console.log('new folder created', newFolderName)
+        setNewFolderName('')
+        setShowModal(false)
     }
 
     const isSelected = !isFolder && selectedFile?.name === node.name;
 
     return (
         <div>
+            {showModal && (
+                <PopupModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    title="Create a new folder"
+                >
+                    <div>
+                        <input placeholder='folder name' value={newFolderName} onChange={handleFolderNameChange}></input>
+                        <button onClick={handleCreateNewFolder}>create</button>
+                    </div>
+                </PopupModal>
+            )}
             <div
                 className={`tree-node ${isFolder ? 'folder' : ''} ${isFolder && isExpanded ? 'expanded' : ''} ${isSelected ? 'selected' : ''}`}
                 style={{ paddingLeft: `${level * 20}px` }}
@@ -54,7 +85,10 @@ const TreeNode = ({ node, level = 0, selectedFile, onSelectFile }) => {
                 </div>
                 <div className="node-container-right">
 
-                    {(isHovered && node.name !== 'root') && <span onClick={handleDelete} className="delete-option">x</span>}
+                    {(isHovered && node.name !== 'root') && <Pencil onClick={handleEditFolder} className='edit-option' />}
+                    {(isHovered && isFolder) && <Plus onClick={handleAddFolder} className="add-option" />}
+                    {(isHovered && node.name !== 'root') && <X onClick={handleDeleteFolder} className="delete-option" />}
+
                 </div>
             </div>
             {isFolder && isExpanded && (

@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sync": "aws s3 sync ./dist 's3://senya.ca/'",
-    "invalidate": "aws cloudfront create-invalidation --distribution-id EY781SWFR0XI6 --paths '/*'"
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E3L9QIW2B7F3T8 --paths '/*'"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
