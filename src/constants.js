@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:8000/api/v1';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL_PROD;
 // You can add specific endpoints as needed, for example:
 export const API_ENDPOINTS = {
     LOGIN: `${API_BASE_URL}/auth/login`,
