@@ -85,6 +85,9 @@ const Login = () => {
   };
 
   const handleUsernameClick = async () => {
+
+    console.log(`access token ${accessToken}`)
+
     try {
       const response = await fetch(API_ENDPOINTS.ME, {
         credentials: 'include',
